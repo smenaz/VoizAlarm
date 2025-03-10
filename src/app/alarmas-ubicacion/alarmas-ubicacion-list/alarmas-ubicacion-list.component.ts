@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+declare var bootstrap: any;
 
 @Component({
   selector: 'app-alarmas-ubicacion-list',
@@ -15,5 +16,19 @@ export class AlarmasUbicacionListComponent {
     { nombre: 'Escuela', ubicacion: 'Olas del Mar' },
     { nombre: 'Curso', ubicacion: 'Motivación' }
   ];
+
+
+  openCreateModal(): void {
+    const modalElement = document.getElementById('createAlarmaUbicacionModal');
+    if (modalElement) {
+      const modal = new bootstrap.Modal(modalElement);
+      modal.show();
+    }
+  }
+
+  onAlarmaCreated():void {
+    
+  }
+
 
 }

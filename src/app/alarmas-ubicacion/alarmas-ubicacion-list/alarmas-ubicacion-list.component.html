@@ -6,7 +6,7 @@
   
         <div class="d-flex justify-content-between mb-3">
           <input type="text" class="form-control w-50" placeholder="Buscar..." />
-          <button class="btn btn-primary">
+          <button class="btn btn-primary" (click)="openCreateModal()" >
             Agregar <i class="bi bi-plus-lg"></i>
           </button>
         </div>
@@ -62,4 +62,17 @@
       </div>
     </div>
   </div>
-  
+
+  <div class="modal fade" id="createAlarmaUbicacionModal" tabindex="-1" aria-labelledby="createAlarmaUbicacionModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl"> <!-- Nota: añadí modal-lg para hacer el modal más grande y que quepa el mapa -->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="createAlarmaUbicacionModalLabel">Agregar alarma basada en ubicación</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <app-alarmas-ubicacion-create (alarmaCreated)="onAlarmaCreated()"></app-alarmas-ubicacion-create>
+        </div>
+      </div>
+    </div>
+  </div>
