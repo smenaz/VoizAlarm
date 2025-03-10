@@ -1,0 +1,65 @@
+<div class="container-fluid container-bg">
+    <div class="container">
+      <div class="card card-custom mt-4">
+        <h3 class="fw-bold">Lista de alarmas con ubicaciones</h3>
+        <p class="text-muted">Gestionar la lista de ubicaciones</p>
+  
+        <div class="d-flex justify-content-between mb-3">
+          <input type="text" class="form-control w-50" placeholder="Buscar..." />
+          <button class="btn btn-primary">
+            Agregar <i class="bi bi-plus-lg"></i>
+          </button>
+        </div>
+  
+        <div class="table-responsive">
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <th>Nombre</th>
+                <th>Ubicación</th>
+                <th class="text-center">Opciones</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let alarma of alarmas">
+                <td>{{ alarma.nombre }}</td>
+                <td>{{ alarma.ubicacion }}</td>
+                <td class="text-center">
+                  <button class="btn btn-outline-primary btn-sm me-2">
+                    <i class="bi bi-pencil"></i>
+                  </button>
+                  <button class="btn btn-outline-danger btn-sm">
+                    <i class="bi bi-trash"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <div class="d-flex justify-content-between align-items-center pagination-container">
+          <div>
+            <span>Items per page:</span>
+            <select class="form-select form-select-sm w-auto d-inline-block ms-2">
+              <option>5</option>
+              <option>10</option>
+              <option>20</option>
+            </select>
+          </div>
+          <div>
+            <span>1 - 100 of 1,228 items</span>
+          </div>
+          <nav>
+            <ul class="pagination pagination-sm mb-0">
+              <li class="page-item disabled"><a class="page-link" href="#">«</a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item"><a class="page-link" href="#">2</a></li>
+              <li class="page-item"><a class="page-link" href="#">3</a></li>
+              <li class="page-item"><a class="page-link" href="#">»</a></li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+  
