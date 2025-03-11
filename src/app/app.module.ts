@@ -3,20 +3,21 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ShareModule } from './share/share.module';
-import { AlarmasUbicacionModule } from './alarmas-ubicacion/alarmas-ubicacion.module';
-import { HomeComponent } from './home/home.component';
+
+// Importa los módulos específicos de Carbon Components Angular
+import { ButtonModule, IconModule, GridModule } from 'carbon-components-angular';
+
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    AlarmasUbicacionModule,
-    ShareModule
+    ButtonModule,  // Botones
+    IconModule,    // Iconos
+    GridModule
   ],
   providers: [],
   bootstrap: [AppComponent]

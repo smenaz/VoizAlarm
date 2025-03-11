@@ -1,0 +1,11 @@
+@use '@carbon/styles/scss/config' with (
+  $use-flexbox-grid: true, // Usa flexbox en lugar de CSS Grid
+  $font-path: '@ibm/plex' // Asegura la correcta carga de fuentes
+);
+
+@use '@carbon/styles';
+
+// Configura el tema global (puedes cambiar `styles.$white` por `styles.$g100` para modo oscuro)
+html {
+  @include styles.theme(styles.$white);
+}
