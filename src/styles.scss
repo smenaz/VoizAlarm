@@ -1,11 +1,78 @@
+// ✅ 1. Importar configuración de Carbon
 @use '@carbon/styles/scss/config' with (
-  $use-flexbox-grid: true, // Usa flexbox en lugar de CSS Grid
-  $font-path: '@ibm/plex' // Asegura la correcta carga de fuentes
+  $use-flexbox-grid: true,
+  $font-path: '@ibm/plex'
 );
 
-@use '@carbon/styles';
+// ✅ 2. Importar temas de Carbon (SOLO UNA VEZ con `with`)
+@use '@carbon/styles/scss/themes';
+@use 'sass:map';
 
-// Configura el tema global (puedes cambiar `styles.$white` por `styles.$g100` para modo oscuro)
+// 🎨 ✅ 3. Variables de colores del sistema de diseño
+$color-primario: #4F8EF7;
+$color-secundario: #64C7C3;
+$fondo-claro: #FFFFFF;
+$texto-principal: #333333;
+$texto-secundario: #777777;
+$exito-confirmacion: #6FCF97;
+$hover: #3A6FC1;
+$selected: #64C7C3;
+$selected-hover: #52A5A2;
+$background-inverse: #333333;
+$background-inverse-hover: #444444;
+$background-brand: #4F8EF7;
+$error-advertencia: #EB5757;
+$link-visitado: #6B8ECF;
+$boton-texto: #FFFFFF;
+$active: #2B5BA8;
+$background: #FFFFFF;
+$background-header: #F5F5F5;
+
+// ✅ 4. Configurar el tema con `map.merge`
+$theme: map.merge(themes.$white, (
+  interactive-01: $color-primario,
+  interactive-02: $color-secundario,
+  interactive-03: $background-brand,
+  interactive-04: $hover,
+  ui-background: $background,
+  ui-01: $fondo-claro,
+  ui-02: $background-header,
+  ui-03: $background-inverse-hover,
+  ui-04: $active,
+  text-01: $texto-principal,
+  text-02: $texto-secundario,
+  text-error: $error-advertencia,
+  link-01: $color-primario,
+  link-visited: $link-visitado,
+  support-success: $exito-confirmacion
+));
+
+// ✅ 5. Importar el tema SOLO UNA VEZ usando `with`
+@use '@carbon/styles/scss/theme' with (
+  $theme: $theme
+);
+
 html {
-  @include styles.theme(styles.$white);
+  @include theme.theme();  // ✅ Aquí aplicamos el tema correctamente
+  min-height: 600px;
+  background-image: url('assets/images/103.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--cds-background, #FFFFFF); // ✅ Asegura fondo blanco
+  color: var(--cds-text-primary, #333333); // ✅ Texto negro
+}
+
+// ✅ 6. Estilos adicionales
+button {
+  background-color: $color-primario;
+  color: $boton-texto;
+
+  &:hover {
+    background-color: $hover;
+  }
+
+  &:active {
+    background-color: $active;
+  }
 }

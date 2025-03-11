@@ -1,0 +1,30 @@
+<div class="table-container">
+  <ibm-table-container>
+    <ibm-table-toolbar>
+      <ibm-table-toolbar-content>
+        <ibm-table-toolbar-search [(ngModel)]="searchModel"></ibm-table-toolbar-search>
+        <button ibmButton="primary" size="sm">
+          Agregar
+          <svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
+        </button>
+      </ibm-table-toolbar-content>
+    </ibm-table-toolbar>
+  
+    <ibm-table
+      [model]="tableModel"
+      [showSelectionColumn]="false"
+      [size]="'lg'"
+      [striped]="false"
+      [sortable]="true"
+      [stickyHeader]="true"
+      [enableSingleSelect]="false">
+    </ibm-table>
+  
+    <!-- PAGINACIÓN -->
+    <ibm-pagination
+      [model]="tableModel"
+      (selectPage)="selectPage($event)">
+    </ibm-pagination>
+    
+  </ibm-table-container>
+</div>
