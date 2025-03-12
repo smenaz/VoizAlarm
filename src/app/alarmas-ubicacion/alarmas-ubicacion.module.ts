@@ -10,13 +10,14 @@ import { ShareModule } from '../share/share.module';
 import { TableModule, ButtonModule, IconModule, GridModule, PaginationModule } from 'carbon-components-angular';
 import { ModalModule } from 'carbon-components-angular';
 import { NotificationModule } from 'carbon-components-angular';
+import { AlarmasUbicacionUpdateComponent } from './alarmas-ubicacion-update/alarmas-ubicacion-update.component';
 
 
 
 @NgModule({
   declarations: [
     AlarmasUbicacionListComponent, 
-    AlarmasUbicacionCreateComponent
+    AlarmasUbicacionCreateComponent, AlarmasUbicacionUpdateComponent
   ],
   imports: [
     CommonModule,

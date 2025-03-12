@@ -40,7 +40,7 @@
       <button ibmButton="ghost" size="sm" class="custom-action-btn" (click)="edit(row)">
         <svg [attr.width]="16" [attr.height]="16" [innerHTML]="editIconHtml"></svg>
       </button>
-      <button ibmButton="danger--ghost" size="sm" class="custom-action-btn" (click)="delete(row)">
+      <button ibmButton="danger--ghost" size="sm" class="custom-action-btn" (click)="abrirEliminarConfirmacion()">
         <svg [attr.width]="16" [attr.height]="16" [innerHTML]="trashIconHtml"></svg>
       </button>
     </ng-template>
@@ -65,4 +65,22 @@
   
   <app-alarmas-ubicacion-create (alarmaCreated)="onAlarmaCreated()" (close)="closeModal()"></app-alarmas-ubicacion-create>
 
+</cds-modal>
+
+<cds-modal size="lg" [open]="isDeleteConfirmModalOpen" (overlaySelected)="cerrarEliminarConfirmacion()">
+  <!-- 📌 Encabezado del modal -->
+  <cds-modal-header (closeSelect)="cerrarEliminarConfirmacion()">
+    <h3 cdsModalHeaderHeading>¿Está seguro de eliminar la ubicación de la alarma?</h3>
+  </cds-modal-header>
+
+  <!-- 📌 Cuerpo del modal -->
+  <cds-modal-content>
+    <p>Esta acción no se puede deshacer.</p>
+  </cds-modal-content>
+
+  <!-- 📌 Footer del modal -->
+  <cds-modal-footer>
+    <button class="cds--btn cds--btn--secondary" (click)="cerrarEliminarConfirmacion()">No</button>
+    <button class="cds--btn cds--btn--primary" (click)="eliminarAlarma()">Sí</button>
+  </cds-modal-footer>
 </cds-modal>

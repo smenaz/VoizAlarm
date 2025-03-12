@@ -29,6 +29,7 @@ export class AlarmasUbicacionListComponent {
 
   isModalOpen: boolean = false;
   size = 'md';
+  isDeleteConfirmModalOpen: boolean = false;
 
   // Referencia al template de la columna "Opciones"
   @ViewChild('customCell', { static: true }) customCell!: TemplateRef<any>;
@@ -135,6 +136,19 @@ export class AlarmasUbicacionListComponent {
 
   closeModal(): void {
     this.isModalOpen = false;
+  }
+
+  cerrarEliminarConfirmacion() {
+    this.isDeleteConfirmModalOpen = false;
+  }
+
+  eliminarAlarma() {
+    console.log('Ubicación eliminada');
+    this.cerrarEliminarConfirmacion(); // Cierra modal tras confirmar
+  }
+
+  abrirEliminarConfirmacion() {
+    this.isDeleteConfirmModalOpen = true;
   }
 
 }
