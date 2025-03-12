@@ -18,7 +18,7 @@
             class="cds--btn__icon"
           ></svg>
         </button>
-        <button ibmButton="primary" size="sm">
+        <button ibmButton="primary" size="sm" (click)="openModal()">
           Agregar
           <svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
         </button>
@@ -54,3 +54,15 @@
     
   </ibm-table-container>
 </div>
+
+<!-- ✅ MODAL DE CARBON (ibm-modal) -->
+
+<cds-modal size="lg" [open]="isModalOpen" (overlaySelected)="closeModal()">
+  <!-- 📌 Encabezado del modal -->
+  <cds-modal-header (closeSelect)="closeModal()">
+    <h3 cdsModalHeaderHeading>Agregar alarma basada en ubicación</h3>
+  </cds-modal-header>
+  
+  <app-alarmas-ubicacion-create (alarmaCreated)="onAlarmaCreated()" (close)="closeModal()"></app-alarmas-ubicacion-create>
+
+</cds-modal>

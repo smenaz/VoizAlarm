@@ -1,31 +1,47 @@
-<div class="container-fluid">
-    <div class="row">
-      <div class="col-md-5">
-        <div class="mb-3">
-          <label for="locationName" class="form-label">Nombre de la ubicación</label>
-          <input type="text" class="form-control" id="locationName" [(ngModel)]="locationName">
-        </div>
-        
-        <div class="mb-3">
-          <label for="latitude" class="form-label">Latitud</label>
-          <input type="text" class="form-control" id="latitude" [(ngModel)]="latitude" readonly>
-        </div>
-        
-        <div class="mb-3">
-          <label for="longitude" class="form-label">Longitud</label>
-          <input type="text" class="form-control" id="longitude" [(ngModel)]="longitude" readonly>
-        </div>
-      </div>
+  <!-- 📌 Sección de contenido con formulario -->
+  <section cdsModalContent [hasForm]="true">
+    <div class="cds--form">
+      <cds-grid>
+        <cds-row>
+          <cds-column sm="4" md="4" lg="4">
+            <cds-text-label helperText="Ingrese el nombre de la ubicación">
+              Nombre de la ubicación
+              <input cdsText placeholder="Ejemplo: Casa">
+            </cds-text-label>
+          </cds-column>
+        </cds-row>
       
-      <div class="col-md-7">
-        <p>Ubicación en mapa. Haz clic en cualquier parte del mapa para colocar un pin</p>
-        <div id="map" style="height: 300px;"></div>
-      </div>
+        <cds-row>
+          <cds-column sm="4" md="4" lg="4">
+            <cds-text-label helperText="Ingrese la latitud">
+              Latitud
+              <input cdsText placeholder="Ejemplo: 10.838383">
+            </cds-text-label>
+          </cds-column>
+        </cds-row>
+      
+        <cds-row>
+          <cds-column sm="4" md="4" lg="4">
+            <cds-text-label helperText="Ingrese la longitud">
+              Longitud
+              <input cdsText placeholder="Ejemplo: 19.7373">
+            </cds-text-label>
+          </cds-column>
+        </cds-row>
+      </cds-grid>
     </div>
-    <div class="row mt-3">
-      <div class="col-12 d-flex justify-content-center gap-3">
-        <button class="btn btn-primary" (click)="saveLocation()">Guardar</button>
-        <button class="btn btn-secondary" (click)="cancel()" data-bs-dismiss="modal">Cancelar</button>
-      </div>
+
+    <!-- 📌 Contenedor del mapa -->
+    <div class="map-container">
+      <svg width="100%" height="200" viewBox="0 0 300 200">
+        <rect width="100%" height="100%" fill="#e0f2ff" stroke="#b0c4de" stroke-width="1"></rect>
+        <circle cx="150" cy="100" r="10" fill="#1f70c1" stroke="black" stroke-width="2"></circle>
+      </svg>
     </div>
-  </div>
+  </section>
+
+  <!-- 📌 Botones del modal -->
+  <cds-modal-footer>
+    <button class="cds--btn cds--btn--secondary" (click)="closeModal()">Cancelar</button>
+    <button class="cds--btn cds--btn--primary" modal-primary-focus (click)="guardarAlarma()">Guardar</button>
+  </cds-modal-footer>

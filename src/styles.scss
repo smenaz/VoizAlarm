@@ -7,6 +7,9 @@
 // ✅ 2. Importar temas de Carbon (SOLO UNA VEZ con `with`)
 @use '@carbon/styles/scss/themes';
 @use '@carbon/styles/scss/theme';
+@use '@carbon/styles/scss/components/button';
+@use '@carbon/styles/scss/components/text-input'; // Asegura que los estilos de input se carguen
+@use '@carbon/styles/scss/components/modal'; // Asegura los estilos del modal
 @use 'sass:map';
 
 // 🎨 ✅ 3. Variables de colores del sistema de diseño
@@ -48,7 +51,8 @@ $theme: map.merge(themes.$white, (
   support-success: $exito-confirmacion,
   layer-01: $fondo-claro, // ✅ Forzar blanco en capas
   layer-02: $background-header, // ✅ Encabezado claro
-  layer-accent-01: $color-primario
+  layer-accent-01: $color-primario,
+  button-secondary: $background-inverse
 ));
 
 // ✅ 5. Aplicar el tema correctamente
@@ -125,5 +129,28 @@ button {
 
   svg path {
     fill: var(--color-secundario, $color-secundario) !important;
+  }
+}
+
+.cds--btn--secondary {
+  background-color: $background-inverse !important; // Asegura el color correcto
+}
+
+.cds--modal-close {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1) !important; // Un hover más sutil
+  }
+
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  svg {
+    fill: black !important; // Cambia el color del ícono de la "X" a negro
   }
 }

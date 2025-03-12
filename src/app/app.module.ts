@@ -7,6 +7,7 @@ import { ShareModule } from './share/share.module';
 
 // Importa los módulos específicos de Carbon Components Angular
 import { TableModule, ButtonModule, IconModule, GridModule, PaginationModule } from 'carbon-components-angular';
+import { AlarmasUbicacionModule } from './alarmas-ubicacion/alarmas-ubicacion.module';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { TableModule, ButtonModule, IconModule, GridModule, PaginationModule } f
     IconModule,    // Iconos
     GridModule,
     PaginationModule,
-    ShareModule
+    ShareModule,
+    AlarmasUbicacionModule
   ],
   providers: [],
   bootstrap: [AppComponent]

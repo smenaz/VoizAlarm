@@ -27,6 +27,9 @@ export class AlarmasUbicacionListComponent {
   editIcon = Edit?.elem || Edit?.svgData?.elem || Edit;
   trashIcon = TrashCan?.elem || TrashCan?.svgData?.elem || TrashCan;
 
+  isModalOpen: boolean = false;
+  size = 'md';
+
   // Referencia al template de la columna "Opciones"
   @ViewChild('customCell', { static: true }) customCell!: TemplateRef<any>;
 
@@ -124,6 +127,14 @@ export class AlarmasUbicacionListComponent {
     // Convert to string and sanitize
     const svgString = new XMLSerializer().serializeToString(svg);
     return this.sanitizer.bypassSecurityTrustHtml(svgString);
+  }
+
+  openModal(): void {
+    this.isModalOpen = true;
+  }
+
+  closeModal(): void {
+    this.isModalOpen = false;
   }
 
 }

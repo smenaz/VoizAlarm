@@ -2,6 +2,7 @@ import { Component, AfterViewInit, EventEmitter, Output } from '@angular/core';
 import * as L from 'leaflet';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+
 @Component({
   selector: 'app-alarmas-ubicacion-create',
   standalone: false,
@@ -11,6 +12,10 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 export class AlarmasUbicacionCreateComponent implements AfterViewInit {
 
   @Output() alarmaCreated = new EventEmitter<any>();
+
+  @Output() close = new EventEmitter<void>(); 
+
+  nuevaAlarma = { nombre: '', ubicacion: '', latitud: '', longitud: '' };
 
 
   private map: L.Map | null = null;
@@ -109,6 +114,15 @@ export class AlarmasUbicacionCreateComponent implements AfterViewInit {
       this.marker.remove(); // o this.marker.removeFrom(this.map);
       this.marker = null;
     }
+  }
+
+  closeModal() {
+    this.close.emit(); // ✅ Emitimos el evento para que el padre cierre el modal
+  }
+
+  guardarAlarma() {
+    console.log('Alarma guardada:', this.nuevaAlarma);
+    this.closeModal(); // ✅ Cierra el modal después de guardar
   }
 
 

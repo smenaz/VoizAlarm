@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AlarmasUbicacionRoutingModule } from './alarmas-ubicacion-routing.module';
 import { AlarmasUbicacionListComponent } from './alarmas-ubicacion-list/alarmas-ubicacion-list.component';
@@ -8,6 +8,9 @@ import { ShareModule } from '../share/share.module';
 
 // ✅ Importa los módulos de Carbon Components Angular
 import { TableModule, ButtonModule, IconModule, GridModule, PaginationModule } from 'carbon-components-angular';
+import { ModalModule } from 'carbon-components-angular';
+
+
 
 @NgModule({
   declarations: [
@@ -24,7 +27,9 @@ import { TableModule, ButtonModule, IconModule, GridModule, PaginationModule } f
     ButtonModule,      // ✅ Botones
     IconModule,        // ✅ Iconos
     GridModule,        // ✅ Grid
-    PaginationModule   // ✅ Módulo de paginación
-  ]
+    PaginationModule,   // ✅ Módulo de paginación
+    ModalModule
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AlarmasUbicacionModule { }

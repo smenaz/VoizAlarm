@@ -1,6 +1,20 @@
-.table-container {
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
+.cds--form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.map-container {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 220px;
+  border: 1px solid #b0c4de;
+  background-color: #e0f2ff;
+}
+
+.cds--modal-footer {
+  display: flex;
+  justify-content: space-between;
+}
