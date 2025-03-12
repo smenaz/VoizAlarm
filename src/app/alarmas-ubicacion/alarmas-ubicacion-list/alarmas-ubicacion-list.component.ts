@@ -56,16 +56,6 @@ export class AlarmasUbicacionListComponent {
   }
 
   updateTableData() {
-    /*const startIndex = (this.currentPage - 1) * this.pageSize;
-    const paginatedData = this.alarmas.slice(startIndex, startIndex + this.pageSize);
-
-    this.tableModel.data = paginatedData.map(alarm => [
-      new TableItem({ data: alarm.nombre }),
-      new TableItem({ data: alarm.ubicacion }),
-      new TableItem({ data: '' }) // Aquí puedes agregar botones de acción si los necesitas
-    ]);
-
-    this.tableModel.totalDataLength = this.alarmas.length;*/
   }
 
   onPageChange(page: number) {

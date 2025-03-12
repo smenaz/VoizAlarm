@@ -1,5 +1,10 @@
 <div class="table-container">
   <ibm-table-container>
+    <!-- ✅ Agregar el título y subtítulo -->
+    <ibm-table-header>
+      <h4 cdsTableHeaderTitle>{{ title }}</h4>
+      <p cdsTableHeaderDescription>{{ subtitle }}</p>
+    </ibm-table-header>
     <ibm-table-toolbar>
       <ibm-table-toolbar-content>
         <ibm-table-toolbar-search [(ngModel)]="searchModel"></ibm-table-toolbar-search>
@@ -16,7 +21,6 @@
       [size]="'lg'"
       [striped]="false"
       [sortable]="true"
-      [stickyHeader]="true"
       [enableSingleSelect]="false">
     </ibm-table>
   
