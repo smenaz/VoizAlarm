@@ -9,6 +9,7 @@ import { ShareModule } from '../share/share.module';
 // ✅ Importa los módulos de Carbon Components Angular
 import { TableModule, ButtonModule, IconModule, GridModule, PaginationModule } from 'carbon-components-angular';
 import { ModalModule } from 'carbon-components-angular';
+import { NotificationModule } from 'carbon-components-angular';
 
 
 
@@ -28,7 +29,8 @@ import { ModalModule } from 'carbon-components-angular';
     IconModule,        // ✅ Iconos
     GridModule,        // ✅ Grid
     PaginationModule,   // ✅ Módulo de paginación
-    ModalModule
+    ModalModule,
+    NotificationModule  
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

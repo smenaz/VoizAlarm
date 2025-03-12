@@ -52,7 +52,10 @@ $theme: map.merge(themes.$white, (
   layer-01: $fondo-claro, // ✅ Forzar blanco en capas
   layer-02: $background-header, // ✅ Encabezado claro
   layer-accent-01: $color-primario,
-  button-secondary: $background-inverse
+  button-secondary: $background-inverse,
+    // Variables para notificaciones
+  background-inverse: $fondo-claro
+    
 ));
 
 // ✅ 5. Aplicar el tema correctamente
@@ -153,4 +156,23 @@ button {
   svg {
     fill: black !important; // Cambia el color del ícono de la "X" a negro
   }
+}
+
+// Estilos específicos para notificaciones de error
+.custom-error-notification {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: white;
+  border: 1px solid $error-advertencia;
+  border-left: 3px solid $error-advertencia;
+  margin-bottom: 16px;
+}
+
+.error-icon {
+  margin-right: 12px;
+}
+
+.error-text {
+  color: $texto-principal;
 }
