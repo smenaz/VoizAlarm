@@ -7,7 +7,17 @@
     </ibm-table-header>
     <ibm-table-toolbar>
       <ibm-table-toolbar-content>
-        <ibm-table-toolbar-search [(ngModel)]="searchModel"></ibm-table-toolbar-search>
+        <cds-table-toolbar-search [expandable]="true" class="custom-action-btn"></cds-table-toolbar-search>
+        <button cdsButton="ghost" size="sm" class="custom-action-btn">
+          <svg [attr.width]="16" [attr.height]="16" [innerHTML]="editIconHtml" size="16" class="cds--btn__icon"></svg>
+        </button>
+        <button cdsButton="ghost" class="toolbar-action custom-action-btn">
+          <svg
+            ibmIcon="settings"
+            size="16"
+            class="cds--btn__icon"
+          ></svg>
+        </button>
         <button ibmButton="primary" size="sm">
           Agregar
           <svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
