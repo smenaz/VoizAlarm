@@ -117,3 +117,13 @@ button {
 .cds--pagination__button:active svg path {
   fill: $color-secundario !important;
 }
+
+.custom-action-btn {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+
+  svg path {
+    fill: var(--color-secundario, $color-secundario) !important;
+  }
+}

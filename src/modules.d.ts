@@ -1,1 +1,2 @@
-declare module '@carbon/icons/*';
+declare module "@carbon/icons/lib/*";
+declare module "@carbon/icons/es/*";
