@@ -1,0 +1,79 @@
+/* 🔹 Asegurar que el formulario tenga una mejor alineación */
+.cds--form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  /* 🔹 Alinear mejor los labels con los inputs */
+  .cds--text-input-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* 🔹 Asegurar que los labels no se vean cortados */
+  .cds--label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+  }
+  
+  /* 🔹 Ajustar el ancho del input para que no se vea mal */
+  input[cdsText] {
+    width: 100% !important;
+    max-width: 100%;
+    min-height: 40px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid color-primario;
+    border-radius: 4px;
+  }
+  
+
+  .leaflet-marker-icon, .leaflet-marker-shadow {
+    z-index: 1000 !important;
+    pointer-events: auto !important;
+    visibility: visible !important;
+  }
+  
+  select[cdsText] {
+    width: 100% !important;
+    max-width: 100%;
+    min-height: 40px;
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    appearance: none; /* Oculta el estilo nativo del sistema */
+    cursor: pointer;
+  }
+  
+  /* Agrega un icono de flecha personalizada */
+  select[cdsText] {
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23888888'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 16px;
+    padding-right: 2rem;
+  }
+  
+  /* Cuando se enfoca */
+  select[cdsText]:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.5);
+  }
+  
+  /* Deshabilitado */
+  select[cdsText]:disabled {
+    background-color: #f5f5f5;
+    cursor: not-allowed;
+  }
+  
+  /* Opciones dentro del select */
+  select[cdsText] option {
+    padding: 10px;
+    font-size: 1rem;
+  }
+  
