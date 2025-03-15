@@ -12,6 +12,16 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
   styleUrls: ['./alarmas-ubicacion-list.component.css']
 })
 export class AlarmasUbicacionListComponent {
+  
+  // Lista de datos con nombre y ubicación
+ listaDeUbicaciones = [
+    { id: 1, nombre: 'Casa', ubicacion: '10.838383, 19.7373' },
+    { id: 2, nombre: 'Trabajo', ubicacion: '19.430919677858906, -99.1198574989767' },
+    { id: 3, nombre: 'Gym', ubicacion: '19.43399544675218, -99.142252828539' },
+    { id: 4, nombre: 'Escuela', ubicacion: '19.435695188780297, -99.15280694936722' },
+    { id: 5, nombre: 'Curso', ubicacion: '19.420437343798202, -99.01077462649602' }
+  ];
+
   title = 'Lista de alarmas con ubicaciones';
   subtitle = 'Gestionar la lista de ubicaciones';
 
@@ -31,6 +41,10 @@ export class AlarmasUbicacionListComponent {
   size = 'md';
   isDeleteConfirmModalOpen: boolean = false;
 
+  ngOnInit() {
+    this.cargarDatosEnTabla();
+  }
+
   // Referencia al template de la columna "Opciones"
   @ViewChild('customCell', { static: true }) customCell!: TemplateRef<any>;
 
@@ -39,22 +53,26 @@ export class AlarmasUbicacionListComponent {
     this.editIconHtml = this.iconToSvg(Edit);
     this.trashIconHtml = this.iconToSvg(TrashCan);
 
-    // Definir encabezados de la tabla usando TableHeaderItem
-    this.tableModel.header = [
+   
+  
+  }
+
+  cargarDatosEnTabla() {
+
+     // Definir encabezados de la tabla usando TableHeaderItem
+     this.tableModel.header = [
       new TableHeaderItem({ data: 'Nombre' }),
       new TableHeaderItem({ data: 'Ubicación' }),
       new TableHeaderItem({ data: 'Opciones'})
     ];
 
-    // Definir datos de la tabla
-    this.tableModel.data = [
-      [ new TableItem({ data: 'Casa' }), new TableItem({ data: 'lat 10.838383, long 19.7373' }), new TableItem({ data: null }) ],
-      [ new TableItem({ data: 'Trabajo' }), new TableItem({ data: 'Marcha' }), new TableItem({ data: null }) ],
-      [ new TableItem({ data: 'Gym' }), new TableItem({ data: 'Mundial 2014' }), new TableItem({ data: null }) ],
-      [ new TableItem({ data: 'Escuela' }), new TableItem({ data: 'Olas del Mar' }), new TableItem({ data: null }) ],
-      [ new TableItem({ data: 'Curso' }), new TableItem({ data: 'Motivación' }), new TableItem({ data: null }) ]
-    ];
-  
+    // Definir datos de la tabla de manera dinámica
+    this.tableModel.data = this.listaDeUbicaciones.map(item => [
+      new TableItem({ data: item.nombre }),
+      new TableItem({ data: item.ubicacion }),
+      new TableItem({ data: item, template: this.customCell }) // Puedes agregar un botón o acciones aquí
+    ]);
+
   }
 
    // ✅ Asignar el `customCell` después de la inicialización del componente
@@ -82,8 +100,20 @@ export class AlarmasUbicacionListComponent {
     console.log('Abrir modal para crear nueva alarma');
   }
 
-  onAlarmaCreated(): void {
-    console.log('Nueva alarma creada');
+  onAlarmaCreated(nuevaAlarma: {  id: number, nombre: string, ubicacion: string}) {
+    console.log('Recibido nueva alarma de Evento:', nuevaAlarma);
+    const nuevoId = this.listaDeUbicaciones.length > 0 
+    ? Math.max(...this.listaDeUbicaciones.map(item => item.id)) + 1 
+    : 1;
+    nuevaAlarma.id = nuevoId
+    this.listaDeUbicaciones.push(nuevaAlarma);  // Agregarlo a la lista
+    this.cargarDatosEnTabla();  // Refrescar la tabla
+    setTimeout(() => {
+      this.tableModel.data.forEach(row => {
+        row[2] = new TableItem({ data: row, template: this.customCell });
+      });
+    });
+    this.isModalOpen = false;
   }
 
   selectPage(evento: Object): void {
@@ -149,6 +179,22 @@ export class AlarmasUbicacionListComponent {
 
   abrirEliminarConfirmacion() {
     this.isDeleteConfirmModalOpen = true;
+  }
+
+  agregarNuevaAlarma(nuevaAlarma: {  id: number, nombre: string, ubicacion: string}) {
+    console.log('Recibido nuevo sonido Evento:', nuevaAlarma);
+    const nuevoId = this.listaDeUbicaciones.length > 0 
+    ? Math.max(...this.listaDeUbicaciones.map(item => item.id)) + 1 
+    : 1;
+    nuevaAlarma.id = nuevoId
+    this.listaDeUbicaciones.push(nuevaAlarma);  // Agregarlo a la lista
+    this.cargarDatosEnTabla();  // Refrescar la tabla
+    setTimeout(() => {
+      this.tableModel.data.forEach(row => {
+        row[2] = new TableItem({ data: row, template: this.customCell });
+      });
+    });
+    this.isModalOpen = false;
   }
 
 }

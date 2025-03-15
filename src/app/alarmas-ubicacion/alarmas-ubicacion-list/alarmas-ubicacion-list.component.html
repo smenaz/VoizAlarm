@@ -63,11 +63,11 @@
     <h3 cdsModalHeaderHeading>Agregar alarma basada en ubicación</h3>
   </cds-modal-header>
   
-  <app-alarmas-ubicacion-create (alarmaCreated)="onAlarmaCreated()" (close)="closeModal()"></app-alarmas-ubicacion-create>
+  <app-alarmas-ubicacion-create (alarmaCreated)="agregarNuevaAlarma($event)" (close)="closeModal()"></app-alarmas-ubicacion-create>
 
 </cds-modal>
 
-<cds-modal size="lg" [open]="isDeleteConfirmModalOpen" (overlaySelected)="cerrarEliminarConfirmacion()">
+<cds-modal size="sm" [open]="isDeleteConfirmModalOpen" (overlaySelected)="cerrarEliminarConfirmacion()">
   <!-- 📌 Encabezado del modal -->
   <cds-modal-header (closeSelect)="cerrarEliminarConfirmacion()">
     <h3 cdsModalHeaderHeading>¿Está seguro de eliminar la ubicación de la alarma?</h3>

@@ -14,7 +14,7 @@ export class AlarmasUbicacionCreateComponent implements AfterViewInit {
   @Output() alarmaCreated = new EventEmitter<any>();
   @Output() close = new EventEmitter<void>(); 
 
-  nuevaAlarma = { nombre: '', ubicacion: '', latitud: '', longitud: '' };
+  nuevaAlarma = { nombre: '', ubicacion: '', latitud: '', longitud: '', id: '' };
 
   private map: L.Map | null = null;
   private marker: L.Marker | null = null;
@@ -40,7 +40,8 @@ export class AlarmasUbicacionCreateComponent implements AfterViewInit {
     this.formGroup = this.fb.group({
       locationName: ['', Validators.required],
       latitude: ['', [Validators.required, Validators.pattern(/^-?\d+(\.\d+)?$/)]],
-      longitude: ['', [Validators.required, Validators.pattern(/^-?\d+(\.\d+)?$/)]]
+      longitude: ['', [Validators.required, Validators.pattern(/^-?\d+(\.\d+)?$/)]],
+      id: ''
     });
   }
 
@@ -183,9 +184,10 @@ export class AlarmasUbicacionCreateComponent implements AfterViewInit {
       const values = this.formGroup.value;
       this.nuevaAlarma = {
         nombre: values.locationName,
-        ubicacion: '',
+        ubicacion: values.latitude + ', ' + values.longitude,
         latitud: values.latitude,
-        longitud: values.longitude
+        longitud: values.longitude,
+        id:'0'
       };
       
       console.log('Enviando nueva alarma:', this.nuevaAlarma);
