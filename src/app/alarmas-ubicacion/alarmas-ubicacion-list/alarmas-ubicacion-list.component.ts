@@ -41,6 +41,7 @@ export class AlarmasUbicacionListComponent {
   size = 'md';
   isDeleteConfirmModalOpen: boolean = false;
   alarmaAEditar: any;
+  isModalOpenEdit: boolean = false;
 
   ngOnInit() {
     this.cargarDatosEnTabla();
@@ -62,6 +63,7 @@ export class AlarmasUbicacionListComponent {
 
      // Definir encabezados de la tabla usando TableHeaderItem
      this.tableModel.header = [
+      new TableHeaderItem({ data: 'ID' }),
       new TableHeaderItem({ data: 'Nombre' }),
       new TableHeaderItem({ data: 'Ubicación' }),
       new TableHeaderItem({ data: 'Opciones'})
@@ -69,9 +71,12 @@ export class AlarmasUbicacionListComponent {
 
     // Definir datos de la tabla de manera dinámica
     this.tableModel.data = this.listaDeUbicaciones.map(item => [
+      new TableItem({ data: item.id }),
       new TableItem({ data: item.nombre }),
       new TableItem({ data: item.ubicacion }),
-      new TableItem({ data: item, template: this.customCell }) // Puedes agregar un botón o acciones aquí
+      new TableItem({ data: item, template: this.customCell }),
+     
+       // Puedes agregar un botón o acciones aquí
     ]);
 
   }
@@ -79,7 +84,7 @@ export class AlarmasUbicacionListComponent {
    // ✅ Asignar el `customCell` después de la inicialización del componente
    ngAfterViewInit() {
     this.tableModel.data.forEach(row => {
-      row[2] = new TableItem({ data: row, template: this.customCell });
+      row[3] = new TableItem({ data: row, template: this.customCell });
     });
   }
 
@@ -111,7 +116,7 @@ export class AlarmasUbicacionListComponent {
     this.cargarDatosEnTabla();  // Refrescar la tabla
     setTimeout(() => {
       this.tableModel.data.forEach(row => {
-        row[2] = new TableItem({ data: row, template: this.customCell });
+        row[3] = new TableItem({ data: row, template: this.customCell });
       });
     });
     this.isModalOpen = false;
@@ -166,7 +171,9 @@ export class AlarmasUbicacionListComponent {
   }
 
   closeModal(): void {
-    this.isModalOpen = false;
+    console.log("✅ Cerrando modal de edición");
+    this.isModalOpenEdit = false; // ✅ Asegurar que el modal se cierra
+    this.alarmaAEditar = null; // ✅ Limpiar la variable para evitar que el modal se reabra automáticamente
   }
 
   eliminarAlarma() {
@@ -197,6 +204,7 @@ export class AlarmasUbicacionListComponent {
       console.log("Elemento seleccionado para eliminar:", rowData);
       this.alarmaAEditar = rowData;
       this.isDeleteConfirmModalOpen = true;
+
     } else {
       console.error("Error: No se recibió data en Delete()");
     }
@@ -212,14 +220,85 @@ export class AlarmasUbicacionListComponent {
     this.cargarDatosEnTabla();  // Refrescar la tabla
     setTimeout(() => {
       this.tableModel.data.forEach(row => {
-        row[2] = new TableItem({ data: row, template: this.customCell });
+        row[3] = new TableItem({ data: row, template: this.customCell });
       });
     });
     this.isModalOpen = false;
   }
 
-  eliminarAlarmaSeleccionada(): void {
-
+  editarNuevaAlarma(nuevaAlarma: { id: number, nombre: string, ubicacion: string }) {
+    console.log('🔄 Editando alarma existente:', nuevaAlarma);
+  
+    // Buscar la alarma en la lista original y actualizarla
+    const index = this.listaDeUbicaciones.findIndex(item => item.id === nuevaAlarma.id);
+  
+    if (index !== -1) {
+      // ✅ Actualizar la alarma en la lista en lugar de agregar una nueva
+      this.listaDeUbicaciones[index] = { ...nuevaAlarma };
+    } else {
+      console.warn("⚠️ No se encontró la alarma para actualizar.");
+    }
+  
+    this.cargarDatosEnTabla(); // ✅ Refrescar la tabla
+  
+    setTimeout(() => {
+      this.tableModel.data.forEach(row => {
+        row[3] = new TableItem({ data: row, template: this.customCell });
+      });
+    });
+  
+    this.isModalOpenEdit = false; // ✅ Asegurar que el modal de edición se cierra correctamente
   }
+  
+  editarAlarmaOpenModal(rowData: any): void {
+    console.log("📌 RowData recibido:", rowData);
+
+    if (!rowData) {
+        console.error('❌ No se recibió rowData, no se abrirá el modal.');
+        return;
+    }
+
+    if (Array.isArray(rowData)) {
+        console.log('📌 rowData recibido como array, extrayendo datos...');
+
+        const id = rowData[0]?.data; // El ID parece estar en la posición 0
+        const nombre = rowData[1]?.data; // El nombre parece estar en la posición 1
+        const ubicacion = rowData[2]?.data; // Ubicación debería estar en la posición 2
+
+        console.log('📌 Extraído -> ID:', id, 'Nombre:', nombre, 'Ubicación:', ubicacion);
+
+        if (!id || !nombre || !ubicacion) {
+            console.error('❌ Datos incompletos en rowData:', rowData);
+            return;
+        }
+
+        rowData = { id, nombre, ubicacion };
+    }
+
+    console.log('📌 Enviando al hijo:', rowData);
+    this.isModalOpenEdit = true;
+    this.alarmaAEditar = rowData;
+}
+
+  
+  
+
+actualizarAlarmaEnTabla(alarmaActualizada: { id: number, nombre: string, ubicacion: string }) {
+  console.log('🔄 Recibido evento alarmaUpdated:', alarmaActualizada);
+
+  const index = this.listaDeUbicaciones.findIndex(item => item.id === alarmaActualizada.id);
+  if (index !== -1) {
+    this.listaDeUbicaciones[index] = alarmaActualizada;
+    this.cargarDatosEnTabla();
+  }
+
+  this.closeModal(); // ✅ Asegurar que el modal se cierra después de actualizar
+}
+  
+
+closeModalUpdate(): void {
+  console.log("✅ Cerrando modal de edición");
+  this.isModalOpenEdit = false;
+}
 
 }

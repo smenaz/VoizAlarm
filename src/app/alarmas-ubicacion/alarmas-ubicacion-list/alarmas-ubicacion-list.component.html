@@ -31,13 +31,14 @@
       [size]="'lg'"
       [striped]="false"
       [sortable]="true"
-      [enableSingleSelect]="false">
+      [enableSingleSelect]="false"
+      class="table-ocultar-id">
 
     </ibm-table>
 
     <!-- ✅ Plantilla `customCell` para los botones de acciones -->
     <ng-template #customCell let-rowData="data">
-      <button ibmButton="ghost" size="sm" class="custom-action-btn" (click)="edit(rowData)">
+      <button ibmButton="ghost" size="sm" class="custom-action-btn" (click)="editarAlarmaOpenModal(rowData)">
         <svg [attr.width]="16" [attr.height]="16" [innerHTML]="editIconHtml"></svg>
       </button>
       <button ibmButton="danger--ghost" size="sm" class="custom-action-btn" (click)="abrirEliminarConfirmacion(rowData)">
@@ -83,4 +84,16 @@
     <button class="cds--btn cds--btn--secondary" (click)="cerrarEliminarConfirmacion()">No</button>
     <button class="cds--btn cds--btn--primary" (click)="eliminarAlarma()">Sí</button>
   </cds-modal-footer>
+</cds-modal>
+
+<!-- ✅ MODAL DE CARBON (ibm-modal) -->
+
+<cds-modal size="lg" [open]="isModalOpenEdit" (overlaySelected)="closeModalUpdate()">
+  <!-- 📌 Encabezado del modal -->
+  <cds-modal-header (closeSelect)="closeModalUpdate()">
+    <h3 cdsModalHeaderHeading>Editar alarma basada en ubicación</h3>
+  </cds-modal-header>
+  
+  <app-alarmas-ubicacion-update [alarmaEvento]="alarmaAEditar" (alarmaUpdated)="actualizarAlarmaEnTabla($event)" (close)="closeModal()"></app-alarmas-ubicacion-update>
+
 </cds-modal>
