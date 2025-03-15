@@ -20,7 +20,7 @@
 
     <!-- Menú -->
     <ul class="menu">
-      <li><a class="nav-link" routerLink="/perfil">Perfil de usuario</a></li>
+      <li><a class="nav-link disabled">Perfil de usuario</a></li>
       <li class="dropdown">
         <a class="nav-link dropdown-toggle">Configuración de Alarmas</a>
         <ul class="dropdown-menu">
@@ -31,6 +31,6 @@
     </ul>
 
     <!-- Botón de Cerrar Sesión -->
-    <button class="logout-button">Cerrar sesión</button>
+    <a class="nav-link" href="javascript:void(0);" (click)="logout()">Cerrar sesión</a>
   </div>
 </nav>

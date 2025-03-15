@@ -93,3 +93,9 @@
     cursor: pointer;
   }
   
+
+  .disabled {
+    pointer-events: none;  /* Evita que el usuario haga clic */
+    opacity: 0.5;          /* Reduce la opacidad para indicar que está deshabilitado */
+    cursor: not-allowed;   /* Muestra el cursor de "prohibido" */
+  }

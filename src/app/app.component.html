@@ -1,25 +1,4 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf="isAuthenticated"></app-navbar>
 <main class="mt">
       <router-outlet></router-outlet>
 </main>
-<!-- <div class="bx--grid">
-  <div class="bx--row">
-    <div class="bx--col">
-      <h2 class="bx--type-expressive-heading-04">Prueba de Carbon en Angular</h2>
-
-      <button ibmButton="primary">Botón Primario</button>
-      <button ibmButton="secondary">Botón Secundario</button>
-      <button ibmButton="tertiary">Botón Terciario</button>
-    </div>
-  </div>
-
-
-  <div class="bx--row">
-    <div class="bx--col-lg-4">
-      <div class="bx--tile">
-        <h3 class="bx--type-expressive-heading-03">Carbon Card</h3>
-        <p>Este es un ejemplo de una tarjeta usando Carbon Components Angular.</p>
-      </div>
-    </div>
-  </div>
-</div> -->

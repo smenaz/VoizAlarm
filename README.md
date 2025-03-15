@@ -1,59 +1,88 @@
-# VoizAlarm
+# Nombre del Proyecto
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.1.
+Proyecto Angular Web con Carbon Design System
 
-## Development server
+Este proyecto es una aplicación web desarrollada en Angular que utiliza Carbon Design System para proporcionar una interfaz de usuario moderna y accesible.
 
-To start a local development server, run:
+## Estudiante
 
+| Nombre                   | Correo                         |
+| ------------------------ | ------------------------------ |
+| Wilder López             | w.lopezm@uniandes.edu.co       |
+| Sergio Mena Zamora       | s.menaz@uniandes.edu.co        |
+
+
+## Tabla de Contenidos
+
+- [Introducción](#introducción)
+  - [Prerrequisitos](#prerrequisitos)
+  - [Configuración del Proyecto](#configuración-del-proyecto)
+  - [Clonación del Repositorio](#clonación-del-repositorio)
+- [Estructura del Proyecto](#estructura-del-proyecto)
+  - [Descripción de los Módulos](#descripción-de-los-módulos)
+- [Uso](#uso)
+  - [Ejecutar la Aplicación en Desarrollo](#ejecutar-la-aplicación-en-desarrollo)
+  - [Construcción para Producción](#construcción-para-producción)
+
+---
+
+## Introducción
+
+Esta aplicación web permite a los usuarios interactuar con un la gestión de sus alarmbas los componentes grafico están basados en carbon design system.
+
+### Prerrequisitos
+
+- **Node.js (versión recomendada: LTS)**: Se recomienda instalar la versión LTS de Node.js. Para verificar:
+  ```bash
+  node -v
+  ```
+- **Angular CLI**: Herramienta de línea de comandos para Angular.
+  ```bash
+  npm install -g @angular/cli
+  ```
+- **Dependencias del Proyecto**: Asegúrate de instalar todas las dependencias necesarias con:
+  ```bash
+  npm install
+  ```
+
+### Clonación del Repositorio
+
+```bash
+git clone https://github.com/smenaz/VoizAlarm
+cd VoizAlarm
+```
+
+## Estructura del Proyecto
+
+El proyecto sigue una estructura modular que facilita la escalabilidad y el mantenimiento del código.
+
+### Descripción de los Módulos
+
+- **src/app/components/**: Contiene los componentes reutilizables de la interfaz.
+- **src/app/services/**: Servicios para la comunicación con la API.
+- **src/app/pages/**: Vistas principales de la aplicación.
+- **src/assets/**: Contiene imágenes y archivos estáticos.
+
+## Uso
+
+### Ejecutar la Aplicación en Desarrollo
+
+Para iniciar el servidor de desarrollo:
 ```bash
 ng serve
 ```
+Esto iniciará la aplicación en `http://localhost:4200/`.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+### Construcción para Producción
+Para generar una versión optimizada para producción:
 ```bash
-ng generate component component-name
+ng build --prod
 ```
+Los archivos resultantes se encontrarán en `dist/` y pueden ser desplegados en cualquier servidor web.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+### URL del Repositorio
 
-## Building
+[Repositorio en GitHub](https://github.com/usuario/proyecto-angular-carbon)
 
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.

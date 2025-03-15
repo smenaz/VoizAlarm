@@ -12,7 +12,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TableModule, ButtonModule, IconModule, GridModule, PaginationModule } from 'carbon-components-angular';
 import { AlarmasUbicacionModule } from './alarmas-ubicacion/alarmas-ubicacion.module';
 import { SonidoEventosModule } from './sonido-eventos/sonido-eventos.module';
-
+import { BlockUIModule } from 'ng-block-ui';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -32,9 +33,11 @@ import { SonidoEventosModule } from './sonido-eventos/sonido-eventos.module';
     MatInputModule,
     MatFormFieldModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BlockUIModule,
+    BlockUIModule.forRoot()
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent, LoginComponent]
 })
 export class AppModule { }

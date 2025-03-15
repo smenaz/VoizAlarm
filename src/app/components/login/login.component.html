@@ -1,0 +1,50 @@
+<div>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container">
+      <a href="/home" routerLink="/home" routerLinkActive="active" class="navbar-brand">
+        <img src="../../../../assets/img/Tornel-navbar.png" alt="">
+      </a>
+    </div>
+  </nav>
+
+  <div class="main-container">
+    <!-- Parte izquierda: Animación de ondas -->
+    <div class="wave-container">
+      <div class="wave"></div>
+      <div class="wave -two"></div>
+      <div class="wave -three"></div>
+      <div class="voiz-alarm">
+        <div class="voiz-text">VOIZALARM</div>
+        <div class="welcome-text">BIENVENIDO</div>
+      </div>
+    </div>
+    
+    <!-- Parte derecha: Login -->
+    <div class="login-card">
+      <h2 class="login-title">Por favor inicia sesión</h2>
+      
+      <form class="login-form">
+        <div class="form-group">
+          <input type="email" placeholder="Correo" class="form-control" value="usuario@voizalarm.com">
+        </div>
+        
+        <div class="form-group">
+          <input type="password" placeholder="Contraseña" class="form-control" name="password" value="12345678">
+        </div>
+        
+        <button type="button" class="btn-login" (click)="goToHome()">
+          Login
+        </button>
+        
+        <div class="forgot-password">
+          <p>¿Olvidaste tu <a href="javascript:void(0)">contraseña</a>?</p>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <p>&copy; 2025 Copyright VoizAlarm</p>
+    <p class="version">V 1.20</p>
+  </div>
+</div>
