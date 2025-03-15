@@ -6,7 +6,7 @@ Este proyecto es una aplicación web desarrollada en Angular que utiliza Carbon 
 
 ## URL de Despliegue
 
-https://voiz-alarm-4271bb99e-smenazs-projects.vercel.app/
+https://voiz-alarm-git-develop-smenazs-projects.vercel.app?_vercel_share=6LqkdJeYE9hGgASlfQr3Qg2EjdhBVqSO
 
 ## Estudiante
 
