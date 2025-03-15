@@ -1,0 +1,56 @@
+<section cdsModalContent [hasForm]="true">
+  <div class="cds--form" [formGroup]="formGroup">
+    <cds-grid>
+      <cds-row>
+        <cds-column sm="4" md="4" lg="8">
+          <cds-text-label 
+          [invalid]="formGroup.get('locationName')?.invalid && (formGroup.get('locationName')?.touched || formSubmitted)"
+          [invalidText]="'El nombre de la ubicación es obligatorio'">
+          Nombre de la ubicación
+          <input cdsText formControlName="locationName" placeholder="Ejemplo: Casa">
+        </cds-text-label>
+        </cds-column>
+      </cds-row>
+    
+      <cds-row>
+        <cds-column sm="2" md="4" lg="4">
+          <cds-text-label [invalid]="formGroup.get('latitude')?.invalid && formGroup.get('latitude')?.touched"
+                         [invalidText]="'Ingrese una latitud válida'">
+            Latitud
+            <input cdsText formControlName="latitude" placeholder="Ejemplo: 10.838383">
+          </cds-text-label>
+        </cds-column>
+      
+        <cds-column sm="2" md="4" lg="4">
+          <cds-text-label [invalid]="formGroup.get('longitude')?.invalid && formGroup.get('longitude')?.touched"
+                         [invalidText]="'Ingrese una longitud válida'">
+            Longitud
+            <input cdsText formControlName="longitude" placeholder="Ejemplo: 19.7373">
+          </cds-text-label>
+        </cds-column>
+      </cds-row>
+
+      <cds-row>
+        <cds-column sm="4" md="8" lg="16">
+          <cds-text-label helperText="Haz clic en cualquier parte del mapa para colocar un pin.">
+            Ubicación en mapa. Haz clic en cualquier parte del mapa para colocar un pin.
+          </cds-text-label>
+          <div id="map" class="map-container"></div>
+        </cds-column>
+      </cds-row>
+    </cds-grid>
+  </div>
+</section>
+
+<div *ngIf="formSubmitted && formGroup.invalid" class="custom-error-notification">
+  <svg class="error-icon" width="20" height="20" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="9" fill="#EB5757" />
+    <path d="M8.5 13.5l-3-3 1-1 2 2 4-4 1 1z" fill="white" />
+  </svg>
+  <span class="error-text"><strong>Error:</strong> Ingrese los campos requeridos</span>
+</div>
+
+<cds-modal-footer>
+  <button class="cds--btn cds--btn--secondary" (click)="closeModal()">Cancelar</button>
+  <button class="cds--btn cds--btn--primary" modal-primary-focus (click)="guardarAlarma()">Guardar</button>
+</cds-modal-footer>

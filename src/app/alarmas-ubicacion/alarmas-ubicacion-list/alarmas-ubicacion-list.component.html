@@ -1,0 +1,99 @@
+<div class="table-container">
+  <ibm-table-container>
+    <!-- ✅ Agregar el título y subtítulo -->
+    <ibm-table-header>
+      <h4 cdsTableHeaderTitle>{{ title }}</h4>
+      <p cdsTableHeaderDescription>{{ subtitle }}</p>
+    </ibm-table-header>
+    <ibm-table-toolbar>
+      <ibm-table-toolbar-content>
+        <cds-table-toolbar-search [expandable]="true" class="custom-action-btn"></cds-table-toolbar-search>
+        <button cdsButton="ghost" size="sm" class="custom-action-btn">
+          <svg [attr.width]="16" [attr.height]="16" [innerHTML]="editIconHtml" size="16" class="cds--btn__icon"></svg>
+        </button>
+        <button cdsButton="ghost" class="toolbar-action custom-action-btn">
+          <svg
+            ibmIcon="settings"
+            size="16"
+            class="cds--btn__icon"
+          ></svg>
+        </button>
+        <button ibmButton="primary" size="sm" (click)="openModal()">
+          Agregar
+          <svg ibmIcon="add" size="20" class="cds--btn__icon"></svg>
+        </button>
+      </ibm-table-toolbar-content>
+    </ibm-table-toolbar>
+  
+    <ibm-table
+      [model]="tableModel"
+      [showSelectionColumn]="false"
+      [size]="'lg'"
+      [striped]="false"
+      [sortable]="true"
+      [enableSingleSelect]="false"
+      class="table-ocultar-id">
+
+    </ibm-table>
+
+    <!-- ✅ Plantilla `customCell` para los botones de acciones -->
+    <ng-template #customCell let-rowData="data">
+      <button ibmButton="ghost" size="sm" class="custom-action-btn" (click)="editarAlarmaOpenModal(rowData)">
+        <svg [attr.width]="16" [attr.height]="16" [innerHTML]="editIconHtml"></svg>
+      </button>
+      <button ibmButton="danger--ghost" size="sm" class="custom-action-btn" (click)="abrirEliminarConfirmacion(rowData)">
+        <svg [attr.width]="16" [attr.height]="16" [innerHTML]="trashIconHtml"></svg>
+      </button>
+    </ng-template>
+
+  
+    <!-- PAGINACIÓN -->
+    <ibm-pagination
+      [model]="tableModel"
+      (selectPage)="selectPage($event)">
+    </ibm-pagination>
+    
+  </ibm-table-container>
+</div>
+
+<!-- ✅ MODAL DE CARBON (ibm-modal) -->
+
+<cds-modal size="lg" [open]="isModalOpen" (overlaySelected)="closeModal()">
+  <!-- 📌 Encabezado del modal -->
+  <cds-modal-header (closeSelect)="closeModal()">
+    <h3 cdsModalHeaderHeading>Agregar alarma basada en ubicación</h3>
+  </cds-modal-header>
+  
+  <app-alarmas-ubicacion-create (alarmaCreated)="agregarNuevaAlarma($event)" (close)="closeModal()"></app-alarmas-ubicacion-create>
+
+</cds-modal>
+
+<cds-modal size="sm" [open]="isDeleteConfirmModalOpen" (overlaySelected)="cerrarEliminarConfirmacion()">
+  <!-- 📌 Encabezado del modal -->
+  <cds-modal-header (closeSelect)="cerrarEliminarConfirmacion()">
+    <h3 cdsModalHeaderHeading>¿Está seguro de eliminar la ubicación de la alarma?</h3>
+  </cds-modal-header>
+
+  <!-- 📌 Cuerpo del modal -->
+  <cds-modal-content>
+    <p>Esta acción no se puede deshacer.</p>
+  </cds-modal-content>
+
+  <!-- 📌 Footer del modal -->
+  <cds-modal-footer>
+    <button class="cds--btn cds--btn--secondary" (click)="cerrarEliminarConfirmacion()">No</button>
+    <button class="cds--btn cds--btn--primary" (click)="eliminarAlarma()">Sí</button>
+  </cds-modal-footer>
+</cds-modal>
+
+<!-- ✅ MODAL DE CARBON (ibm-modal) -->
+
+<cds-modal size="lg" [open]="isModalOpenEdit" (overlaySelected)="closeModalUpdate()">
+  <!-- 📌 Encabezado del modal -->
+  <cds-modal-header (closeSelect)="closeModalUpdate()">
+    <h3 cdsModalHeaderHeading>Editar alarma basada en ubicación</h3>
+  </cds-modal-header>
+  
+  <app-alarmas-ubicacion-update [alarmaEvento]="alarmaAEditar" (alarmaUpdated)="actualizarAlarmaEnTabla($event)" (close)="closeModal()"></app-alarmas-ubicacion-update>
+
+</cds-modal>

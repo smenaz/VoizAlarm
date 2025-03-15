@@ -1,0 +1,144 @@
+@use '@angular/material' as mat;
+
+// 🎨 Paleta de colores basada en Figma
+$primary-color: #4A90E2;
+$secondary-color: #E5E5E5;
+$danger-color: #D9534F;
+$text-color: #333;
+
+// 📌 Estilos generales
+:host {
+  display: block;
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+// Contenedor principal de la tabla
+.table-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+// 📊 Tabla Material Design
+mat-table {
+  width: 100%;
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+// 📌 Cabecera
+.mat-header-row {
+  background-color: $primary-color !important;
+  color: white !important;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+// 📌 Filas
+.mat-row {
+  font-size: 14px;
+  border-bottom: 1px solid $secondary-color;
+
+  &:hover {
+    background-color: rgba(74, 144, 226, 0.1);
+  }
+}
+
+// 📌 Celdas
+.mat-cell {
+  height: 56px;  
+  display: flex;
+  align-items: center;
+}
+
+// ✅ **Corrección: Ancho fijo para la columna de opciones**
+.mat-column-opciones {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 56px !important;
+}
+
+// ✅ **Corrección: Distribución uniforme de los botones**
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.mat-icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  color: $primary-color;
+}
+
+.mat-icon-button[color="warn"] {
+  color: $danger-color;
+}
+
+// ✅ **Corrección: Altura uniforme en filas**
+.mat-row,
+.mat-header-row {
+  height: 56px;
+}
+
+.mat-cell,
+.mat-header-cell {
+  vertical-align: middle;
+  padding: 12px 8px;
+}
+
+// 📌 Paginador
+.mat-paginator {
+  background-color: $primary-color;
+  color: white;
+  padding: 10px;
+  
+  .mat-paginator-range-label {
+    font-weight: 600;
+  }
+
+  .mat-button-wrapper {
+    color: white !important;
+  }
+
+  button {
+    color: white;
+    border-radius: 4px;
+  }
+}
+
+.title {
+  padding-top: 20px;
+  padding-left: 20px;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  padding-left: 20px;
+  margin-top: 0; // Eliminar espacio extra arriba
+  color: #666;
+}
+
+.table-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+}
+
+.add-button {
+  background-color: $primary-color;
+  color: white;
+  font-weight: bold;
+  border-radius: 4px;
+  padding: 6px 16px;
+}
+

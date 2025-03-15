@@ -1,0 +1,51 @@
+<section cdsModalContent [hasForm]="true">
+  <div class="cds--form" [formGroup]="formGroup">
+    <cds-grid>
+      <!-- Campo de Evento -->
+      <cds-row>
+        <cds-column sm="4" md="4" lg="8">
+          <cds-text-label 
+            [invalid]="formGroup.get('eventoName')?.invalid && (formGroup.get('eventoName')?.touched || formSubmitted)"
+            [invalidText]="'El nombre del evento es obligatorio'">
+            Evento
+            <input cdsText formControlName="eventoName" placeholder="Ejemplo: Casa">
+          </cds-text-label>
+        </cds-column>
+      </cds-row>
+
+      <!-- Campo de Sonido -->
+      <cds-row>
+        <cds-column sm="2" md="4" lg="4">
+          <cds-text-label 
+            [invalid]="formGroup.get('sonidoName')?.invalid && (formGroup.get('sonidoName')?.touched || formSubmitted)"
+            [invalidText]="'Seleccionar un sonido es obligatorio'">
+            Sonido
+            <select cdsText formControlName="sonidoName">
+              <option value="" disabled selected>Selecciona un sonido</option>
+              <option value="Naturaleza">Naturaleza</option>
+              <option value="Marcha">Marcha</option>
+              <option value="Mundial 2014">Mundial 2014</option>
+              <option value="Olas del Mar">Olas del Mar</option>
+              <option value="Motivación">Motivación</option>
+            </select>
+          </cds-text-label>
+        </cds-column>
+      </cds-row>
+    </cds-grid>
+  </div>
+</section>
+
+<!-- Mensaje de error general -->
+<div *ngIf="formSubmitted && formGroup.invalid" class="custom-error-notification">
+  <svg class="error-icon" width="20" height="20" viewBox="0 0 20 20">
+    <circle cx="10" cy="10" r="9" fill="#EB5757" />
+    <path d="M8.5 13.5l-3-3 1-1 2 2 4-4 1 1z" fill="white" />
+  </svg>
+  <span class="error-text"><strong>Error:</strong> Ingrese los campos requeridos</span>
+</div>
+
+<!-- Botones de acción -->
+<cds-modal-footer>
+  <button class="cds--btn cds--btn--primary" modal-primary-focus (click)="guardarSonidoEvento()">Guardar</button>
+  <button class="cds--btn cds--btn--secondary" (click)="closeModal()">Cancelar</button>
+</cds-modal-footer>

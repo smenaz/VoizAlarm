@@ -1,0 +1,178 @@
+// ✅ 1. Importar configuración de Carbon
+@use '@carbon/styles/scss/config' with (
+  $use-flexbox-grid: true,
+  $font-path: '@ibm/plex'
+);
+
+// ✅ 2. Importar temas de Carbon (SOLO UNA VEZ con `with`)
+@use '@carbon/styles/scss/themes';
+@use '@carbon/styles/scss/theme';
+@use '@carbon/styles/scss/components/button';
+@use '@carbon/styles/scss/components/text-input'; // Asegura que los estilos de input se carguen
+@use '@carbon/styles/scss/components/modal'; // Asegura los estilos del modal
+@use 'sass:map';
+
+// 🎨 ✅ 3. Variables de colores del sistema de diseño
+$color-primario: #4F8EF7;
+$color-secundario: #64C7C3;
+$fondo-claro: #FFFFFF;
+$texto-principal: #333333;
+$texto-secundario: #777777;
+$exito-confirmacion: #6FCF97;
+$hover: #3A6FC1;
+$selected: #64C7C3;
+$selected-hover: #52A5A2;
+$background-inverse: #333333;
+$background-inverse-hover: #444444;
+$background-brand: #4F8EF7;
+$error-advertencia: #EB5757;
+$link-visitado: #6B8ECF;
+$boton-texto: #FFFFFF;
+$active: #2B5BA8;
+$background: #FFFFFF;
+$background-header: #FFFFFF;
+
+// ✅ 4. Configurar el tema con `map.merge`
+$theme: map.merge(themes.$white, (
+  interactive-01: $color-primario,
+  interactive-02: $color-secundario,
+  interactive-03: $background-brand,
+  interactive-04: $hover,
+  ui-background: $background, // ✅ Fondo general
+  ui-01: $fondo-claro, // ✅ Filas de la tabla
+  ui-02: $background-header, // ✅ Encabezado de la tabla
+  ui-03: $background-inverse-hover,
+  ui-04: $active,
+  text-01: $texto-principal,
+  text-02: $texto-secundario,
+  text-error: $error-advertencia,
+  link-01: $color-primario,
+  link-visited: $link-visitado,
+  support-success: $exito-confirmacion,
+  layer-01: $fondo-claro, // ✅ Forzar blanco en capas
+  layer-02: $background-header, // ✅ Encabezado claro
+  layer-accent-01: $color-primario,
+  button-secondary: $background-inverse,
+    // Variables para notificaciones
+  background-inverse: $fondo-claro
+    
+));
+
+// ✅ 5. Aplicar el tema correctamente
+:root {
+  @include theme.theme($theme);
+}
+
+// ✅ 6. Asegurar que el fondo y texto usen variables CSS
+html {
+  min-height: 100vh;
+  background-image: url('assets/images/103.svg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: var(--cds-background, #FFFFFF); // Asegura fondo blanco
+  color: var(--cds-text-primary, #333333); // Asegura texto negro
+}
+
+// ✅ 7. Personalizar botones
+button {
+  background-color: $color-primario !important;
+  color: $boton-texto;
+
+  &:hover {
+    background-color: $hover;
+  }
+
+  &:active {
+    background-color: $active;
+  }
+}
+
+
+// ✅ Cambiar color de la paginación al color primario
+.cds--pagination {
+  background-color: var(--cds-interactive-01, $color-primario) !important;
+}
+
+// ✅ Si hay bordes, cambiarlos también
+.cds--pagination__left,
+.cds--pagination__right {
+  border-color: var(--cds-interactive-01, $color-primario) !important;
+}
+
+// ✅ Si quieres cambiar botones de paginación
+.cds--pagination__button {
+  background-color: var(--cds-interactive-01, $color-primario) !important;
+  color: white !important;
+}
+
+// ✅ Cambiar el color del ícono específicamente
+.cds--pagination__button svg path {
+  fill: $color-secundario !important;
+}
+
+// ✅ Alternativa con más especificidad
+.cds--pagination__button .cds--btn--icon-only .cds--btn_icon path {
+  fill:$color-secundario !important;
+}
+
+// ✅ Cambiar color en hover y active
+.cds--pagination__button:hover svg path {
+  fill: $color-secundario !important;
+}
+
+.cds--pagination__button:active svg path {
+  fill: $color-secundario !important;
+}
+
+.custom-action-btn {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+
+  svg path {
+    fill: var(--color-secundario, $color-secundario) !important;
+  }
+}
+
+.cds--btn--secondary {
+  background-color: $background-inverse !important; // Asegura el color correcto
+}
+
+.cds--modal-close {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  border: none !important;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1) !important; // Un hover más sutil
+  }
+
+  &:focus {
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  svg {
+    fill: black !important; // Cambia el color del ícono de la "X" a negro
+  }
+}
+
+// Estilos específicos para notificaciones de error
+.custom-error-notification {
+  display: flex;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: white;
+  border: 1px solid $error-advertencia;
+  border-left: 3px solid $error-advertencia;
+  margin-bottom: 16px;
+}
+
+.error-icon {
+  margin-right: 12px;
+}
+
+.error-text {
+  color: $texto-principal;
+}
