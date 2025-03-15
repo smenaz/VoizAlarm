@@ -4,6 +4,10 @@ Proyecto Angular Web con Carbon Design System
 
 Este proyecto es una aplicación web desarrollada en Angular que utiliza Carbon Design System para proporcionar una interfaz de usuario moderna y accesible.
 
+## URL de Despliegue
+
+https://voiz-alarm-4271bb99e-smenazs-projects.vercel.app/
+
 ## Estudiante
 
 | Nombre                   | Correo                         |
@@ -85,4 +89,5 @@ Los archivos resultantes se encontrarán en `dist/` y pueden ser desplegados en 
 ### URL del Repositorio
 
 [Repositorio en GitHub](https://github.com/usuario/proyecto-angular-carbon)
+
 
