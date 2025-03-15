@@ -40,6 +40,7 @@ export class AlarmasUbicacionListComponent {
   isModalOpen: boolean = false;
   size = 'md';
   isDeleteConfirmModalOpen: boolean = false;
+  alarmaAEditar: any;
 
   ngOnInit() {
     this.cargarDatosEnTabla();
@@ -168,17 +169,37 @@ export class AlarmasUbicacionListComponent {
     this.isModalOpen = false;
   }
 
-  cerrarEliminarConfirmacion() {
+  eliminarAlarma() {
+    console.log("Ingresando a eliminar sonido:")
+    console.log("valor sonidoaEditar:",this.alarmaAEditar)
+
+    if (this.alarmaAEditar) {
+
+      // Filtrar la lista para excluir el elemento seleccionado
+      this.listaDeUbicaciones = this.listaDeUbicaciones.filter(item => item.id !== this.alarmaAEditar.id);
+      
+      // Refrescar la tabla para reflejar los cambios
+      this.cargarDatosEnTabla();
+  
+      console.log(`Elemento con id ${this.alarmaAEditar.id} eliminado`);
+    }
+  
+    // Cierra el modal de confirmación
+    this.cerrarEliminarConfirmacion();
+  }
+  cerrarEliminarConfirmacion(): void {
     this.isDeleteConfirmModalOpen = false;
   }
 
-  eliminarAlarma() {
-    console.log('Ubicación eliminada');
-    this.cerrarEliminarConfirmacion(); // Cierra modal tras confirmar
-  }
-
-  abrirEliminarConfirmacion() {
-    this.isDeleteConfirmModalOpen = true;
+  abrirEliminarConfirmacion(rowData: any) {
+    console.log("Elemento seleccionado para eliminar:", rowData);
+    if (rowData) {
+      console.log("Elemento seleccionado para eliminar:", rowData);
+      this.alarmaAEditar = rowData;
+      this.isDeleteConfirmModalOpen = true;
+    } else {
+      console.error("Error: No se recibió data en Delete()");
+    }
   }
 
   agregarNuevaAlarma(nuevaAlarma: {  id: number, nombre: string, ubicacion: string}) {
@@ -195,6 +216,10 @@ export class AlarmasUbicacionListComponent {
       });
     });
     this.isModalOpen = false;
+  }
+
+  eliminarAlarmaSeleccionada(): void {
+
   }
 
 }

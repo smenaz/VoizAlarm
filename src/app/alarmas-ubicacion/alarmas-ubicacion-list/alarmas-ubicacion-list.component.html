@@ -36,11 +36,11 @@
     </ibm-table>
 
     <!-- ✅ Plantilla `customCell` para los botones de acciones -->
-    <ng-template #customCell let-row>
-      <button ibmButton="ghost" size="sm" class="custom-action-btn" (click)="edit(row)">
+    <ng-template #customCell let-rowData="data">
+      <button ibmButton="ghost" size="sm" class="custom-action-btn" (click)="edit(rowData)">
         <svg [attr.width]="16" [attr.height]="16" [innerHTML]="editIconHtml"></svg>
       </button>
-      <button ibmButton="danger--ghost" size="sm" class="custom-action-btn" (click)="abrirEliminarConfirmacion()">
+      <button ibmButton="danger--ghost" size="sm" class="custom-action-btn" (click)="abrirEliminarConfirmacion(rowData)">
         <svg [attr.width]="16" [attr.height]="16" [innerHTML]="trashIconHtml"></svg>
       </button>
     </ng-template>
